@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fashion Store</title>
+    <!-- <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+      type="text/css"
+    /> -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Tenor+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./assets/owl-carousel/owl.carousel.css" />
+
+    <!-- Default Theme -->
+    <link rel="stylesheet" href="./assets/owl-carousel/owl.theme.css" />
+
+    <link href="./styles/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles/style.css" />
+    <!-- <link rel="stylesheet" href="./styles/sidebars.scss" /> -->
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <nav class="navbar navbar-expand-lg navbar-light">
+          <button
+            class="navbar-toggler border-0 shadow-none"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarTogglerDemo03"
+            aria-controls="navbarTogglerDemo03"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <img src="./assets/images/menu-icon.png" alt="menu button" />
+          </button>
+          <a class="navbar-brand" href="#"
+            ><img
+              src="./assets/images/logo.png"
+              alt="Open Fashion Logo"
+              srcset=""
+          /></a>
+
+          <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+              <li class="nav-item active">
+                <a class="nav-link" href="#"
+                  >Home <span class="sr-only">(current)</span></a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled" href="#">Disabled</a>
+              </li>
+            </ul>
+          </div>
+          <form id="search" class="form-inline my-2 my-lg-0 collapse">
+            <input
+              class="form-control mr-sm-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+              Search
+            </button>
+          </form>
+          <div class="search-cart-wrapper d-flex gap-2">
+            <i
+              class="fa-solid fa-magnifying-glass navbar-toggler border-0"
+              data-bs-toggle="collapse"
+              data-bs-target="#search"
+              aria-controls="search"
+              aria-expanded="false"
+              aria-label="Toggle Search"
+            ></i>
+            <i class="fa-solid fa-bag-shopping"></i>
+          </div>
+        </nav>
+      </header>
+      <section class="item-section">
+        <div class="items-wrapper">
+          <div id="owl-demo" class="owl-carousel owl-theme">
+            <!-- <div class="item">
+            <img
+            class="item-image img-fluid w-100"
+            src="assets/images/jacket.png"
+            alt="The Last of us"
+          />
+        </div> -->
+          </div>
+          <!-- <div class="item-body d-flex flex-column gap-1">
+            <div class="item-title">MOHAN</div>
+            <div class="item-desc">Recycle Boucle Knit Cardigan Pink</div>
+            <div class="item-price">$120</div>
+          </div> -->
+
+          <div class="item-options my-4 d-flex gap-4">
+            <div class="item-color d-flex gap-2 align-items-center">
+              <p class="m-0">Color</p>
+              <!-- <div
+                onclick="setActiveBlob(this)"
+                class="rounded rounded-circle color-circle"
+              >
+                <div
+                  class="rounded rounded-circle border color-circle-border"
+                ></div>
+              </div> -->
+            </div>
+
+            <!-- <div class="item-size d-flex gap-2 align-items-center">
+              <p class="m-0">Size</p>
+              <div
+                onclick="setSizeBlob(this)"
+                class="rounded rounded-circle text-center selected size size-blob d-flex align-items-center justify-content-center"
+              >
+                <p class="size-letter m-0">S</p>
+              </div>
+            </div> -->
+          </div>
+        </div>
+      </section>
+    </div>
+    <section class="basket-section container-fluid bg-black py-4"></section>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- owl carousel -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
+      integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="./assets/owl-carousel/owl.carousel.js"></script>
+    <script src="./assets/owl-carousel/owl.carousel.min.js"></script>
+    <script src="./main.js"></script>
+  </body>
+</html>

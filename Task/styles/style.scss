@@ -1,0 +1,129 @@
+$primary-color: #000;
+$secondary-color: #555555;
+$secondary-color-light: #888888;
+$orange-color: #dd8560;
+body {
+  font-family: "Tenor Sans", sans-serif;
+}
+
+.item-section {
+  max-width: 700px;
+  .items-wrapper {
+    #owl-demo {
+      .item {
+        img {
+          display: block;
+          width: 100%;
+          height: auto;
+        }
+      }
+    }
+  }
+
+  .item-body {
+    .item-title {
+      letter-spacing: 5.5px;
+    }
+    .item-desc {
+      color: $secondary-color;
+    }
+    .item-price {
+      color: $orange-color;
+      font-size: 18px;
+    }
+  }
+  .item-options {
+    .item-color {
+      p {
+        font-size: 12px;
+        color: $secondary-color;
+      }
+
+      .color-circle {
+        &.c1 {
+          background-color: $primary-color;
+        }
+
+        &.c2 {
+          background-color: $orange-color;
+        }
+
+        &.c3 {
+          background-color: #e1e0db;
+        }
+
+        width: 16px;
+        height: 16px;
+        opacity: 1;
+        position: relative;
+        cursor: pointer;
+      }
+      .active {
+        border: 2px;
+      }
+      .color-circle-border {
+        width: 22px;
+        height: 22px;
+        border: 2px solid $secondary-color;
+        position: absolute;
+        top: -3px;
+        left: -3px;
+        // opacity: 0.5;
+      }
+    }
+    .item-size {
+      .size-title {
+        font-size: 12px;
+        color: $secondary-color;
+      }
+      .selected {
+        background-color: $primary-color;
+        color: #e1e0db;
+      }
+      .not-selected {
+        border: 1px solid#dedede;
+        color: $secondary-color;
+      }
+      .size-blob {
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+        .size-letter {
+          font-size: 10px;
+        }
+      }
+    }
+  }
+}
+.basket-section {
+  color: #fcfcfc;
+  .footer-wrapper {
+    .footer-plus {
+      &.counter {
+        border-radius: 50%;
+        border: 1px solid #fff;
+      }
+      cursor: pointer;
+      padding: 4px;
+      width: 25px;
+      height: 25px;
+    }
+    .footer-minus {
+      cursor: pointer;
+      padding: 4px;
+      border-radius: 50%;
+      border: 1px solid #fff;
+      width: 25px;
+      height: 25px;
+    }
+    .footer-text {
+      font-size: 14px;
+    }
+    .footer-heart {
+      cursor: pointer;
+      // border-radius: 50%;
+      width: 25px;
+      height: 25px;
+    }
+  }
+}
