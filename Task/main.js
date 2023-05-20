@@ -7,57 +7,81 @@ var basketCounterDefault = $("<div></div>")
 var borderContainer = $("<div></div>").addClass(
   "footer-border d-flex justify-content-center align-items-center gap-2"
 );
-var footerPlusIcon = $("<i />")
-  .addClass("footer-plus fa-solid fa-plus")
-  .click(openBasket);
+var footerPlusIcon = $("<i />").addClass("footer-plus fa-solid fa-plus");
 var footerPlusIconCount = $("<div></div>")
   .addClass(
     "footer-border d-flex justify-content-center align-items-center gap-2"
   )
-  .append(
-    $("<i />").addClass("footer-plus counter fa-solid fa-plus").click(addBasket)
-  );
+  .append($("<i />").addClass("footer-plus counter fa-solid fa-plus"));
 var footerMinusIcon = $("<div></div>")
   .addClass("footer-border d-flex justify-content-center align-items-center")
-  .append(
-    $("<i />").addClass("footer-minus fa-solid fa-minus").click(deleteBasket)
-  );
+  .append($("<i />").addClass("footer-minus fa-solid fa-minus"));
 var footerMinusIconClose = $("<div></div>")
   .addClass("footer-border d-flex justify-content-center align-items-center")
-  .append(
-    $("<i />").addClass("footer-minus fa-solid fa-minus").click(closeBasket)
-  );
+  .append($("<i />").addClass("footer-minus fa-solid fa-minus"));
 // var footerMinusIconHtml =
 //   "<i onclick='deleteBasket' class= 'footer-minus fa-solid fa-minus'/>";
-var footerHeartIcon = $("<i />")
-  .addClass("footer-heart fa-regular fa-heart ms-auto not-liked")
-  .click(likeItem);
+var footerHeartIcon = $("<i />").addClass(
+  "footer-heart fa-regular fa-heart ms-auto not-liked"
+);
+var footerCartIcon = $("<i />").addClass(
+  "cart-close-icon fa-solid fa-bag-shopping"
+);
 // var footerHeartIconHtml =
 //   "<i onclick='likeItem' class= 'footer-heart fa-regular fa-heart ms-auto not-liked'/>";
-var footerText = $("<div></div>").addClass("footer-text").text("ADD TO BASKET");
+var footerText = $("<div></div>").addClass("footer-text");
 // var footerTextHtml = '<div class="footer-text">ADD TO BASKET</div>';
 var footer = $(".basket-section");
 
 var footerWrapper = $("<div></div>").addClass(
-  "footer-wrapper container d-flex align-items-center gap-2"
+  "footer-wrapper container-fluid d-flex align-items-center gap-2"
 );
 
 var footerWrapperHtml = $(
-  "<div class='footer-wrapper container d-flex align-items-center'></div>"
+  "<div class='footer-wrapper container-fluid d-flex align-items-center'></div>"
 );
 
-var footerWrapperDefault = $(footerWrapperHtml)
-  .append(footerPlusIcon)
-  .append(footerText)
-  .append(footerHeartIcon)
-  .addClass("gap-2");
+function footerWrapperDefault() {
+  return $(footerWrapperHtml)
+    .empty()
+    .removeClass()
+    .off("click")
+    .addClass("footer-wrapper container-fluid d-flex align-items-center gap-2")
+    .append(footerPlusIcon.on("click", openBasket))
+    .append(footerText.text("ADD TO BASKET"))
+    .append(footerHeartIcon.on("click", likeItem).addClass("mt-1"))
+    .addClass("gap-2");
+}
+function footerWrapperCartEmpty() {
+  return $(footerWrapperHtml)
+    .empty()
+    .removeClass()
+    .append(footerCartIcon.addClass("mt-2"))
+    .append(footerText.text("CONTINUE SHOPPING").addClass("mt-1"))
+    .removeClass()
+    .addClass(
+      "footer-wrapper empty-cart-footer container-fluid d-flex align-items-center  gap-4 justify-content-center"
+    )
+    .on("click", closeCart);
+}
+function footerWrapperCartFilled() {
+  return $(footerWrapperHtml)
+    .empty()
+    .removeClass()
+    .append(footerCartIcon.addClass("mt-2"))
+    .append(footerText.text("BUY NOW").addClass("mt-1"))
+    .removeClass()
+    .addClass(
+      "filled-cart-footer container-fluid d-flex align-items-center gap-4 justify-content-center"
+    );
+}
 
 var itemsWrapper = $(".items-wrapper");
 
 var item = {
   title: "MOHAN",
   desc: "Recycle Boucle Knit Cardigan Pink",
-  price: "$120",
+  price: 120,
 };
 function imageCreate(number) {
   for (let index = 0; index < number; index++) {
@@ -74,7 +98,11 @@ function createItem(item) {
     .addClass("item-body d-flex flex-column gap-1")
     .append($("<div></div>").addClass("item-title").text(item.title))
     .append($("<div></div>").addClass("item-desc").text(item.desc))
-    .append($("<div></div>").addClass("item-price").text(item.price));
+    .append(
+      $("<div></div>")
+        .addClass("item-price")
+        .text("$" + item.price)
+    );
   return result;
 }
 
@@ -112,17 +140,18 @@ function likeItem() {
 function openBasket() {
   basketCounter = 1;
   $(this)
-    .parent()
+    .closest(".footer-wrapper")
     .empty()
-    .append(footerPlusIconCount)
+    .append(footerMinusIcon.on("click", deleteBasket))
     .append(basketCounterDefault)
-    .append(footerMinusIcon)
-    .removeClass("gap-2")
-    .addClass("justify-content-center gap-3");
+    .append(footerPlusIconCount.on("click", addBasket))
+    .removeClass()
+    .addClass(
+      "footer-wrapper container-fluid d-flex align-items-center justify-content-center gap-4"
+    );
   $(".basket-counter").text(basketCounter);
 }
 function addBasket() {
-  // debugger;
   basketCounter++;
   console.log(basketCounter);
 
@@ -130,18 +159,7 @@ function addBasket() {
 }
 
 function closeBasket() {
-  $(this)
-    .parent()
-    .parent()
-    .parent()
-    .empty()
-    .append(
-      $(footerWrapperHtml)
-        .append(footerPlusIcon.click(openBasket))
-        .append(footerText)
-        .append(footerHeartIcon)
-        .addClass("gap-2")
-    );
+  $(this).closest(".footer-wrapper").empty().append(footerWrapperDefault());
 }
 
 function deleteBasket() {
@@ -149,18 +167,187 @@ function deleteBasket() {
     basketCounter--;
     $(".basket-counter").text(basketCounter);
   } else if (basketCounter == 1) {
-    $(this)
-      .parent()
-      .empty()
-      .append(footerPlusIconCount)
-      .append(basketCounterDefault)
-      .append(footerMinusIconClose)
-      .removeClass("gap-2")
-      .addClass("justify-content-center gap-3");
-    $(".basket-counter").text(basketCounter);
+    // debugger;
+    $(this).closest(".footer-wrapper").empty();
+    basketCounter = 0;
+    closeBasket();
   }
 }
 
+function openCart() {
+  $(".item-section").hide();
+  $(".cart-section").slideDown().removeClass("hidden");
+  footer.empty();
+  cartWrapper(basketCounter);
+  if (basketCounter > 0) {
+    $(".cart-wrapper").append(footerWrapperCartFilled());
+  } else {
+    $(".cart-wrapper").append(footerWrapperCartEmpty());
+  }
+  $("<hr></hr>").addClass("subtotal-border").insertAfter(".item-options");
+  $("<div></div>")
+    .addClass("subtotal-wrapper d-flex flex-column gap-3")
+    .append(
+      $("<div></div>")
+        .addClass("subtotal-header d-flex")
+        .append($("<div></div>").addClass("subtotal-title").text("SUB TOTAL"))
+        .append(
+          $("<div></div>")
+            .addClass("subtotal-price ms-auto")
+            .text("$" + item.price * basketCounter)
+        )
+    )
+    .append(
+      $("<div></div>")
+        .addClass("subtotal-desc")
+        .text(
+          "*shipping charges, taxes and discount codes are calculated at the time of accounting."
+        )
+    )
+    .insertAfter(".subtotal-border");
+
+  //add subtotal part
+}
+function closeCart() {
+  $(".item-section").show();
+  $(".cart-section").slideUp().addClass("hidden");
+  $(".subtotal-wrapper").empty();
+  // alert();
+
+  //after i close cart, footer doesn't go to normal
+
+  footer.append(footerWrapperDefault());
+  $(".items-wrapper").append($(".item-options"));
+
+  // $(footer).append(footerWrapperDefault().on("click", closeCart));
+}
+function incrementCounter() {
+  basketCounter++;
+  $(".cart-item-price").text("$" + item.price * basketCounter);
+
+  $(".cart-item-counter-text").text(basketCounter);
+}
+function decrementCounter() {
+  if (basketCounter > 1) {
+    basketCounter--;
+    $(".cart-item-price").text("$" + item.price * basketCounter);
+    $(".cart-item-counter-text").text(basketCounter);
+  }
+}
+function itemCartWrapper() {
+  return $("<div></div>")
+    .addClass("d-flex cart-item-wrapper gap-3")
+    .append(
+      $("<div></div>")
+        .addClass("cart-item-img")
+        .append(
+          $("<img />")
+            .addClass("img-fluid")
+            .attr("src", "assets/images/jacket.png")
+        )
+    )
+    .append(
+      $("<div></div>")
+        .addClass("cart-item-body d-flex flex-column gap-2 ")
+        .append($("<div></div>").addClass("cart-item-title").text(item.title))
+        .append($("<div></div>").addClass("cart-item-desc").text(item.desc))
+        .append(
+          $("<div></div>")
+            .addClass(
+              "cart-item-counter-wrapper container d-flex align-items-center gap-3"
+            )
+            .append(
+              $("<div></div>")
+                .addClass(
+                  "cart-item-counter-border d-flex justify-content-center align-items-center"
+                )
+                .append(
+                  $("<i />").addClass(
+                    "cart-item-counter-minus fa-solid fa-minus"
+                  )
+                )
+                .on("click", decrementCounter)
+            )
+            .append(
+              $("<div></div>")
+                .addClass("cart-item-counter-text")
+                .text(basketCounter)
+            )
+            .append(
+              $("<div></div>")
+                .addClass(
+                  "cart-item-counter-border d-flex justify-content-center align-items-center gap-2"
+                )
+                .append(
+                  $("<i />").addClass("cart-item-counter-plus fa-solid fa-plus")
+                )
+                .on("click", incrementCounter)
+            )
+        )
+        .append(
+          $("<div></div>")
+            .addClass("cart-item-price")
+            .text("$" + item.price)
+        )
+    );
+}
+
+// function cartWrapperClear() {
+//   $(".cart-title").removeClass().addClass("empty");
+//   $(".cart-wrapper")
+//     .addClass("empty")
+//     .append(
+//       $("<p></p>")
+//         .addClass("empty-cart-text m-0 p-0")
+//         .text(" You have no items in your Shopping Bag.")
+//     );
+// }
+function cartWrapper(count) {
+  if (count == 0) {
+    $(".cart-title").removeClass().addClass("card-title empty");
+    $(".cart-wrapper")
+      .empty()
+      .removeClass()
+      .addClass("cart-wrapper empty")
+      .append(
+        $("<p></p>")
+          .addClass("empty-cart-text m-0 p-0")
+          .text(" You have no items in your Shopping Bag.")
+      );
+  } else {
+    $(".cart-title").removeClass().addClass("cart-title not-empty");
+    $(".cart-wrapper")
+      .empty()
+      .removeClass()
+      .addClass("cart-wrapper not-empty")
+      .append(itemCartWrapper())
+      .append($(".item-options"));
+  }
+}
+
+function openSideMenu() {
+  $(".sidemenu").slideDown().removeClass("hidden");
+  $(".item-section").hide();
+  $(".basket-section").hide();
+  sideItemAdd(6);
+}
+
+function closeSideMenu() {
+  $(".sidemenu").slideUp().addClass("hidden");
+  $(".item-section").show();
+  $(".basket-section").show();
+}
+
+function sideItemAdd(count) {
+  for (let index = 0; index < count; index++) {
+    //count henaaa gabet problemmm
+    $(".sidemenu-list").append(
+      $(
+        '<div class="sidemenu-item d-flex p-4 justify-content-between"> <div class="sidemenu-item-text">New</div> <div class="sidemenu-item-arrow"> <img src="assets/images/arrow-down.png" alt="arrow down" /> </div></div>'
+      )
+    );
+  }
+}
 $(document).ready(function () {
   imageCreate(5);
   $("#owl-demo").owlCarousel({
@@ -207,5 +394,20 @@ $(document).ready(function () {
   setActiveBlob($(".color-circle:first"));
   $(".size-blob:first").addClass("selected").removeClass("not-selected");
 
-  footer.append(footerWrapperDefault);
+  footer.append(footerWrapperDefault());
+
+  //cart basics
+  $(".cart-open-icon").on("click", openCart);
+  $(".cart-close-icon").on("click", closeCart);
+
+  // SIDEMENU PART
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  $(".sidemenu-toggler").on("click", openSideMenu);
+  $(".sidemenu-close-icon").on("click", closeSideMenu);
 });

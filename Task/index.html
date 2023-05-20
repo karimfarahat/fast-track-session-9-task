@@ -35,66 +35,51 @@
   <body>
     <div class="container">
       <header>
-        <nav class="navbar navbar-expand-lg navbar-light">
-          <button
-            class="navbar-toggler border-0 shadow-none"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarTogglerDemo03"
-            aria-controls="navbarTogglerDemo03"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
+        <nav class="sidemenu-wrapper d-flex justify-content-between py-3">
+          <button class="sidemenu-toggler border-0 bg-body shadow-none">
             <img src="./assets/images/menu-icon.png" alt="menu button" />
           </button>
-          <a class="navbar-brand" href="#"
+          <a class="main-logo" href="#"
             ><img
               src="./assets/images/logo.png"
               alt="Open Fashion Logo"
               srcset=""
           /></a>
+          <div
+            class="search-cart-wrapper d-flex justify-content-center align-items-center gap-4"
+          >
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <i class="cart-open-icon fa-solid fa-bag-shopping"></i>
+          </div>
 
-          <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-              <li class="nav-item active">
-                <a class="nav-link" href="#"
-                  >Home <span class="sr-only">(current)</span></a
+          <div class="sidemenu container-fluid hidden">
+            <i class="sidemenu-close-icon fa-regular fa-x m-3 fs-2"></i>
+            <ul class="nav nav-tabs justify-content-between mx-2 mx-md-5">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#"
+                  >WOMEN</a
                 >
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" href="#">MAN</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link disabled" href="#">Disabled</a>
+                <a class="nav-link" href="#">KIDS</a>
               </li>
             </ul>
-          </div>
-          <form id="search" class="form-inline my-2 my-lg-0 collapse">
-            <input
-              class="form-control mr-sm-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-              Search
-            </button>
-          </form>
-          <div class="search-cart-wrapper d-flex gap-2">
-            <i
-              class="fa-solid fa-magnifying-glass navbar-toggler border-0"
-              data-bs-toggle="collapse"
-              data-bs-target="#search"
-              aria-controls="search"
-              aria-expanded="false"
-              aria-label="Toggle Search"
-            ></i>
-            <i class="fa-solid fa-bag-shopping"></i>
+            <div class="sidemenu-list m-3">
+              <!-- <div class="sidemenu-item d-flex justify-content-between">
+                <div class="sidemenu-item-text">New</div>
+                <div class="sidemenu-item-arrow">
+                  <img src="assets/images/arrow-down.png" alt="arrow down" />
+                </div>
+              </div> -->
+            </div>
           </div>
         </nav>
       </header>
       <section class="item-section">
-        <div class="items-wrapper">
+        <div class="items-wrapper d-flex flex-column justify-content-center">
           <div id="owl-demo" class="owl-carousel owl-theme">
             <!-- <div class="item">
             <img
@@ -133,6 +118,15 @@
               </div>
             </div> -->
           </div>
+        </div>
+      </section>
+      <section class="cart-section flex-column hidden container-fluid">
+        <i class="cart-close-icon fa-regular fa-x m-3 fs-2"></i>
+        <div class="cart-title my-3 mx-1">CART</div>
+        <div class="cart-wrapper">
+          <!-- <p class="empty-cart-text m-0 p-0">
+            You have no items in your Shopping Bag.
+          </p> -->
         </div>
       </section>
     </div>
